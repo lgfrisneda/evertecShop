@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateOrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -13,14 +14,11 @@ class OrderController extends Controller
         return view("Public.Orders.Index", compact("orders"));
     }
 
-    public function store(Request $request)
+    public function store(CreateOrderRequest $request)
     {
-        $orderVaidated = $request->validate([
-            'customer_name' => 'required',
-            'customer_email' => 'required',
-            'customer_mobile' => 'required',
-        ]);
-        $order = Order::create($orderVaidated);
+        $orderValidated = $request->validated();
+
+        $order = Order::create($orderValidated);
 
         return redirect()->route("orders.index")->with('success', 'Order saved');;
     }

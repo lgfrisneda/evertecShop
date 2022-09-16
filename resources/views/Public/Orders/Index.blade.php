@@ -22,8 +22,13 @@
                                 <th scope="row">{{ $order->id }}</th>
                                 <td>{{ $order->status }}</td>
                                 <td>
-                                    status or button pay
-                                    <!-- <a href="{{ route('orders.show', $order) }}" class="btn btn-sm btn-primary">Pagar</a> -->
+                                    @if($order->status != 'PAYED')
+                                        <a href="#" class="btn btn-sm btn-primary">Pagar</a>
+                                    @else
+                                    <span class="badge rounded-pill bg-success">
+                                        {{ $order->status }}
+                                    </span>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

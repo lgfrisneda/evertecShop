@@ -23,14 +23,23 @@
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
                                     <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+                                    @if($errors->has('customer_name'))
+                                        <div class="text-danger">{{ $errors->first('customer_name') }}</div>
+                                    @endif
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email address</label>
                                     <input type="email" class="form-control" id="customer_email" name="customer_email" required>
+                                    @if($errors->has('customer_email'))
+                                        <div class="text-danger">{{ $errors->first('customer_email') }}</div>
+                                    @endif
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Phone</label>
                                     <input type="text" class="form-control" id="customer_mobile" name="customer_mobile" required>
+                                    @if($errors->has('customer_mobile'))
+                                        <div class="text-danger">{{ $errors->first('customer_mobile') }}</div>
+                                    @endif
                                 </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary">Generate order</button>
