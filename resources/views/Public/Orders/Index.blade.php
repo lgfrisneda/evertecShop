@@ -12,6 +12,7 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
+                            <th scope="col">User</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                             </tr>
@@ -20,6 +21,7 @@
                             @foreach($orders as $order)
                             <tr>
                                 <th scope="row">{{ $order->id }}</th>
+                                <td>{{ $order->user->name }}</td>
                                 <td>{{ $order->status }}</td>
                                 <td>
                                     @if($order->status != 'PAYED')

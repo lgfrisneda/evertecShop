@@ -10,7 +10,11 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::all();
+        if(auth()->user()->hasRole('ADMIN')){
+            $orders = Order::with('user')->get();
+        }else{
+            $orders = auth()->user()->orders;
+        }
         return view("Public.Orders.Index", compact("orders"));
     }
 
@@ -18,7 +22,7 @@ class OrderController extends Controller
     {
         $orderValidated = $request->validated();
 
-        $order = Order::create($orderValidated);
+        $order = auth()->user()->orders()->create($orderValidated);
 
         return redirect()->route("orders.index")->with('success', 'Order saved');;
     }
